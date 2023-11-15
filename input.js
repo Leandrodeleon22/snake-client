@@ -1,4 +1,7 @@
-const setupInput = function () {
+let connection;
+
+const setupInput = function (conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -9,8 +12,16 @@ const setupInput = function () {
   return stdin;
 };
 
+const directionController = (str) => {
+  connection.write(str);
+};
+
 const handleUserInput = function (key) {
-  console.log(key);
+  if (key === "w") directionController("Move: up");
+  if (key === "a") directionController("Move: left");
+  if (key === "s") directionController("Move: down");
+  if (key === "d") directionController("Move: right");
+
   if (key === "\u0003") {
     process.exit();
   }
