@@ -21,6 +21,8 @@ const handleUserInput = function (key) {
   if (key === "a") directionController("Move: left");
   if (key === "s") directionController("Move: down");
   if (key === "d") directionController("Move: right");
+  if (key === "q") directionController("Say: Awesome");
+  if (key === "e") directionController("Say: Please let me eat");
 
   if (key === "\u0003") {
     process.exit();
