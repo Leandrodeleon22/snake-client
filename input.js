@@ -1,3 +1,10 @@
+const {
+  MOVE_UP_KEY,
+  MOVE_DOWN_KEY,
+  MOVE_LEFT_KEY,
+  MOVE_RIGHT_KEY,
+} = require("./constants");
+
 let connection;
 
 const setupInput = function (conn) {
@@ -17,10 +24,10 @@ const directionController = (str) => {
 };
 
 const handleUserInput = function (key) {
-  if (key === "w") directionController("Move: up");
-  if (key === "a") directionController("Move: left");
-  if (key === "s") directionController("Move: down");
-  if (key === "d") directionController("Move: right");
+  if (key === "w") directionController(MOVE_UP_KEY);
+  if (key === "a") directionController(MOVE_LEFT_KEY);
+  if (key === "s") directionController(MOVE_DOWN_KEY);
+  if (key === "d") directionController(MOVE_RIGHT_KEY);
   if (key === "q") directionController("Say: Awesome");
   if (key === "e") directionController("Say: Please let me eat");
 
