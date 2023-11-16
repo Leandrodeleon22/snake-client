@@ -1,6 +1,7 @@
-const { keysObj } = require("./constants");
+const { keysObj, messageKey } = require("./constants");
 
 let connection;
+let direction;
 
 const setupInput = function (conn) {
   connection = conn;
@@ -14,11 +15,27 @@ const setupInput = function (conn) {
   return stdin;
 };
 
+const directionController = (key) => {
+  connection.write(keysObj[key]);
+
+  direction = setInterval(() => {
+    connection.write(keysObj[key]);
+  }, 200);
+};
+
 const handleUserInput = function (key) {
   if (key === "\u0003") {
     process.exit();
   }
-  connection.write(keysObj[key]);
+
+  if (direction) {
+    clearInterval(direction);
+    direction = null;
+  }
+
+  if (keysObj[key]) {
+    directionController(key);
+  }
 };
 
 module.exports = { setupInput };
