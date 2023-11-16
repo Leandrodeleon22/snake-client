@@ -6,11 +6,12 @@ const keysObj = {
   a: "Move: left",
   s: "Move: down",
   d: "Move: right",
+};
+
+const messageKey = {
   q: "Say: Awesome",
   e: "Say: Please let me eat ",
 };
-
-const messageKey = {};
 
 module.exports = {
   IP,

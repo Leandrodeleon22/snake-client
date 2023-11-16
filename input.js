@@ -2,6 +2,7 @@ const { keysObj, messageKey } = require("./constants");
 
 let connection;
 let direction;
+let currentKey;
 
 const setupInput = function (conn) {
   connection = conn;
@@ -34,7 +35,14 @@ const handleUserInput = function (key) {
   }
 
   if (keysObj[key]) {
-    directionController(key);
+    currentKey = key;
+    directionController(currentKey);
+  }
+  if (messageKey[key]) {
+    clearInterval(direction);
+    direction = null;
+    connection.write(messageKey[key]);
+    directionController(currentKey);
   }
 };
 
